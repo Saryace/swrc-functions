@@ -153,8 +153,6 @@ plot_swrc <- ggplot() +
     panel.grid.minor = element_blank()
   )
 
-print(p_swrc)
-
 # Save PNG
 ggsave("plots/swrc_unimodal_vg.png", plot = plot_swrc,
        width = 10, height = 6.5, dpi = 150)
