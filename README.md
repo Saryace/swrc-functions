@@ -10,7 +10,7 @@ Código: Sara Acevedo + Claude Anthropic Sonnet 4.5
 
 ### Ecuación de van Genuchten
 
-$$\theta(h) = \theta_r + \frac{\theta_s - \theta_r}{\left[1 + (\alpha \, \left|h  \right|)^n\right]^{1-1/n}}$$
+$$\theta(h) = \theta_r + \frac{\theta_s - \theta_r}{\left[1 + (\alpha \ \left|h  \right|)^n\right]^{1-1/n}}$$
 
 | Parámetro | Descripción | Unidades |
 |-----------|-------------|----------|
