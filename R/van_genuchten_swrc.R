@@ -4,15 +4,15 @@
 # ╱|、
 # (˚ˎ 。7  
 #  |、˜〵          
-#  じしˍ,)ノ
+#  じしˍ,)ノ 
 
 # -------------------------------------------------------------------------
-# Fits the unimodal van Genuchten model to soil water retention curve (SWRC)
-# data, calculates hydraulic properties (FC, PWP, PAW), and produces a swrc plot
+# Ajusta el modelo unimodal de van Genuchten a datos de la curva de retención de agua del suelo (SWRC)
+# calcula propiedades hidráulicas (FC, PWP, PAW) y genera un gráfico de la SWRC
 #
-# Required packages: readxl, minpack.lm,  tidyverse
-# Data: anonymous data provides by Cristina Contreras cristina.contreras@uc.cl
-# Code: Sara Acevedo + Claude Anthropic Sonnet 4.5 
+# Paquetes requeridos: readxl, minpack.lm, tidyverse
+# Datos: datos anónimos proporcionados por Cristina Contreras cristina.contreras@usm.cl
+# Código: Sara Acevedo + Claude Anthropic Sonnet 4.5
 # -------------------------------------------------------------------------
 
 # Libraries ---------------------------------------------------------------
@@ -31,19 +31,19 @@ data <- read_excel("data/data-swrc.xlsx") %>%
 
 # θ(h) = θ_r + (θ_s - θ_r) / [1 + (α·h)^n]^(1 - 1/n)
 #
-# where h = 10^pF  (matric potential in cm H₂O) 
+# donde h = 10^pF  (potencial mátrico en cm H₂O)
 #
-# Parameters:
-#   θ_s  — saturated water content (%)
-#   θ_r  — residual water content  (%)
-#   α    — scale parameter related to air-entry pressure (cm⁻¹)
-#   n    — shape parameter (dimensionless, > 1)
+# Parámetros:
+#   θ_s  — contenido de agua a saturación (%)
+#   θ_r  — contenido de agua residual (%)
+#   α    — parámetro de escala relacionado con la entrada de aire (cm⁻¹)
+#   n    — parámetro de forma (sin unidades, > 1)
 
-source("R/parameter-estimation.R") # from h to pF
+source("R/parameter-estimation.R") # de h a pF
 
 data_fitted <- fit_unimodal_vg(data)
 
-data_fitted$params #parameters ready!
+data_fitted$params # aca los parametros
 
 # FC - PWP - PAW ----------------------------------------------------------
 
@@ -80,8 +80,8 @@ fitted_curve <- data.frame(
 
 # ggplot ------------------------------------------------------------------
 
-pF_fc  <- 2.5 # references
-pF_pwp <- 4.2 # references
+pF_fc  <- 2.5 
+pF_pwp <- 4.2 
 vwc_fc  <- hydraulics$theta_fc
 vwc_pwp <- hydraulics$theta_pwp
 

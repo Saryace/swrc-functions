@@ -4,6 +4,10 @@
 
 Este repositorio contiene funciones en **R** y **Python** para ajustar el modelo de van Genuchten (VG) a datos de la curva de retención de agua en suelo (SWRC), calcular propiedades hidráulicas y generar un gráfico tipo presentación/paper
 
+Datos: datos anónimos proporcionados por Cristina Contreras 
+
+Código: Sara Acevedo + Claude Anthropic Sonnet 4.5
+
 ### Ecuación de van Genuchten
 
 $$\theta(h) = \theta_r + \frac{\theta_s - \theta_r}{\left[1 + (\alpha \, \left|h  \right|)^n\right]^{1-1/n}}$$
