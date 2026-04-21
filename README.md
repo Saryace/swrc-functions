@@ -1,84 +1,12 @@
-# swrc-functions
-
-**Soil Water Retention Curve (SWRC) fitting using the unimodal van Genuchten model**  
-**Ajuste de la Curva de Retención de Agua en Suelo (SWRC) usando el modelo unimodal de van Genuchten**
-
----
-
-## English
-
-### Overview
-
-This repository provides functions in **R** and **Python** to fit the **unimodal van Genuchten (VG) model** to soil water retention curve data, derive key hydraulic properties, and produce publication-ready plots.
-
-### The van Genuchten Equation
-
-$$\theta(h) = \theta_r + \frac{\theta_s - \theta_r}{\left[1 + (\alpha \, h)^n\right]^{1-1/n}}$$
-
-| Parameter | Description | Units |
-|-----------|-------------|-------|
-| θ_s | Saturated water content | % |
-| θ_r | Residual water content | % |
-| α | Scale parameter (air-entry related) | cm⁻¹ |
-| n | Shape parameter | dimensionless |
-| h | Matric potential = 10^pF | cm H₂O |
-
-### Hydraulic properties calculated
-
-| Property | pF threshold | Matric potential |
-|----------|-------------|-----------------|
-| Field Capacity (FC) | 2.5 | −0.03 MPa |
-| Permanent Wilting Point (PWP) | 4.2 | −1.5 MPa |
-| Plant Available Water (PAW) | — | θ_FC − θ_PWP |
-
-### Repository structure
-
-```
-swrc-functions/
-├── data/
-│   └── data-swrc.xlsx        # Example SWRC dataset (pF, VWC %)
-├── R/
-│   └── van_genuchten_swrc.R  # R script (minpack.lm / nlsLM)
-└── python/
-    └── van_genuchten_swrc.ipynb  # Jupyter notebook (scipy)
-```
-
-### Key functions
-
-**`fit_unimodal_vg(data)`** — fits the VG model using nonlinear least squares, returns parameters (θ_s, θ_r, α, n), R², RMSE and AIC.
-
-**`calculate_hydraulic(theta_s, theta_r, alpha, n)`** — computes FC, PWP and PAW from the fitted parameters.
-
-### Output plot
-
-![SWRC van Genuchten](plots/swrc_unimodal_vg.png)
-
-### Usage
-
-**R** — requires `readxl`, `minpack.lm`, `dplyr`, `ggplot2`
-```r
-source("R/van_genuchten_swrc.R")
-```
-
-**Python** — requires `numpy`, `pandas`, `scipy`, `matplotlib`, `openpyxl`
-
-Open the notebook directly in Google Colab:
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/Saryace/swrc-functions/blob/main/python/van_genuchten_swrc.ipynb)
-
-> Tip: to open any notebook from this repo in Colab, change the domain in the URL from `github.com` to `githubtocolab.com`.
-
----
-
-## Español
+## Código Clase AGR3016
 
 ### Descripción
 
-Este repositorio contiene funciones en **R** y **Python** para ajustar el **modelo unimodal de van Genuchten (VG)** a datos de la curva de retención de agua en suelo (SWRC), calcular propiedades hidráulicas clave y generar gráficos listos para publicación.
+Este repositorio contiene funciones en **R** y **Python** para ajustar el modelo de van Genuchten (VG) a datos de la curva de retención de agua en suelo (SWRC), calcular propiedades hidráulicas y generar un gráfico tipo presentación/paper
 
 ### Ecuación de van Genuchten
 
-$$\theta(h) = \theta_r + \frac{\theta_s - \theta_r}{\left[1 + (\alpha \, h)^n\right]^{1-1/n}}$$
+$$\theta(h) = \theta_r + \frac{\theta_s - \theta_r}{\left[1 + (\alpha \, \left|h  \right|)^n\right]^{1-1/n}}$$
 
 | Parámetro | Descripción | Unidades |
 |-----------|-------------|----------|
@@ -92,9 +20,9 @@ $$\theta(h) = \theta_r + \frac{\theta_s - \theta_r}{\left[1 + (\alpha \, h)^n\ri
 
 | Propiedad | Umbral pF | Potencial mátrico |
 |-----------|-----------|-------------------|
-| Capacidad de campo (CC) | 2.5 | −0.03 MPa |
-| Punto de marchitez permanente (PMP) | 4.2 | −1.5 MPa |
-| Agua disponible para plantas (ADP) | — | θ_CC − θ_PMP |
+| Capacidad de campo (FC) | 2.5 | −0.03 MPa |
+| Punto de marchitez permanente (PWP) | 4.2 | −1.5 MPa |
+| Agua disponible para plantas (PAW) | — | θ_FC − θ_PWP |
 
 ### Estructura del repositorio
 
